@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+<form action="#" th:action="@{/meeting}" th:object="${meeting}" method="post">
+
+    <!--   <p>Id: <input type="text" th:field="*{id}"/></p>-->
+    <p> Meeting ID : <input type="text" th:field="*{id}"/></p>
+    <p> Employee Name : <input type="text" th:field="*{nameEmp}"/></p>
+    <p>Start Time : <input type="text" th:field="*{startTime}"/></p>
+    <p>End Time : <input type="text" th:field="*{endTime}"/></p>
+    <p><input type="submit" value="Submit"/> </p>
+</form>
+
+<h1>Current Meetings</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Employee Name</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- if true, display this No Meetings Available      -->
+    <tr th:if="${!meetings}">
+        <td colspan="2"> No Meetings Available</td>
+    </tr>
+    <!--  otherwise, iterate over list and display info      -->
+    <tr th:each="meeting : ${meetings}">
+        <td><span th:text="${meeting.id}">Id</span></td>
+        <td><span th:text="${meeting.nameEmp}">Employee Name</span></td>
+        <td><span th:text="${meeting.startTime}">Start</span></td>
+        <td><span th:text="${meeting.endTime}">End</span></td>
+
+    </tbody>
+</table>
+</body>
+</html>
